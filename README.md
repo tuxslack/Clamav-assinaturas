@@ -18,7 +18,29 @@ Faça atualizações dos bancos de dados e assinaturas com sensatez.
 
 
 
+Correção para atualizar o ClamAV via freshclam:
+
+#####################################################################
+
+freshclam (Não atualiza):
+ERROR: Can’t open /var/log/clamav/freshclam.log in append mode (check permissions!).
+ERROR: Problem with internal logger (UpdateLogFile = /var/log/clamav/freshclam.log).
+ERROR: initialize: libfreshclam init failed.
+ERROR: Initialization error!
+
+Solução:
+
+sudo rm /var/log/clamav/freshclam.log
+touch /var/log/clamav/freshclam.log
+sudo chmod 644 /var/log/clamav/freshclam.log
+sudo chown clamav.clamav /var/log/clamav/freshclam.log
+sudo freshclam
+
+#####################################################################
+
+
 Fontes:
 
 https://plus.diolinux.com.br/t/transforme-o-clamav-no-melhor-antivirus-para-linux-melhor-que-pago/53245
 https://www.vivaolinux.com.br/etc/freshclamconf/
+
